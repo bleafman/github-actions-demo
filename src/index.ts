@@ -10,7 +10,7 @@ async function run() {
 
   console.log(`Getting a quote from ${character}...`);
 
-  const quote = await getFuturamaQuote();
+  const quote = await getFuturamaQuote(character);
 
   console.log(quote);
 }
@@ -21,8 +21,8 @@ function getCharacterInput() {
   return character;
 }
 
-async function getFuturamaQuote() {
-  const response = await axios.get('https://futuramaapi.herokuapp.com/api/characters/dr-zoidberg/1');
+async function getFuturamaQuote(character: string) {
+  const response = await axios.get(`https://futuramaapi.herokuapp.com/api/characters/${character}/1`);
 
   const {data} = response;
 

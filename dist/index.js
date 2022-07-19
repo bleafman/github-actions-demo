@@ -7002,7 +7002,7 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         const character = getCharacterInput();
         console.log(`Getting a quote from ${character}...`);
-        const quote = yield getFuturamaQuote();
+        const quote = yield getFuturamaQuote(character);
         console.log(quote);
     });
 }
@@ -7010,9 +7010,9 @@ function getCharacterInput() {
     const character = (core === null || core === void 0 ? void 0 : core.getInput('character')) || DEFAULT_CHARACTER;
     return character;
 }
-function getFuturamaQuote() {
+function getFuturamaQuote(character) {
     return __awaiter(this, void 0, void 0, function* () {
-        const response = yield axios_1.default.get('https://futuramaapi.herokuapp.com/api/characters/dr-zoidberg/1');
+        const response = yield axios_1.default.get(`https://futuramaapi.herokuapp.com/api/characters/${character}/1`);
         const { data } = response;
         const firstEntry = data[0];
         return `${firstEntry.character} said: ${firstEntry.quote}`;
