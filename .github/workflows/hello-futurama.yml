@@ -12,4 +12,8 @@ jobs:
       with:
         character: bender
       id: futurama
+    - name: Use the hello-futurama action with invalid character
+      uses: ./
+      with:
+        character: invalid
     - run: echo ${{steps.futurama.outputs.quote}}
