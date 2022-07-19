@@ -1,6 +1,6 @@
 name: "Hello World"
-  description: "Saying hello to the world 👋🏻"
-  author: "Brandon Leafman"
+description: "Saying hello to the world 👋🏻"
+author: "Brandon Leafman"
 
 runs:
   using: 'node16'
