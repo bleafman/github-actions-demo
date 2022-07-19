@@ -6,7 +6,8 @@ jobs:
   hello-futurama:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: ./github/actions
+    - uses: actions/checkout@v3
+    - name: Use the hello-futurama action
+      uses: ./
       with:
         character: bender
