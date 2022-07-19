@@ -1,5 +1,5 @@
 import axios from 'axios'
-import core from '@actions/core'
+import * as core from '@actions/core';
 
 const DEFAULT_CHARACTER = 'dr-zoidberg';
 

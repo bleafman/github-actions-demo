@@ -4,6 +4,7 @@ author: "Brandon Leafman"
 
 inputs:
   character:
+    required: false
     description: "The Futurama character you would like a quote from"
     default: "dr-zoidberg"
 
