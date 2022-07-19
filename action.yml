@@ -8,6 +8,11 @@ inputs:
     description: "The Futurama character you would like a quote from"
     default: "dr-zoidberg"
 
+outputs:
+  quote:
+    description: "The quote from the specified character"
+    example: "I'm afraid I can't do that, Dave."
+
 runs:
   using: 'node16'
   main: 'dist/index.js'

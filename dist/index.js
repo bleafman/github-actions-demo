@@ -7004,6 +7004,7 @@ function run() {
         console.log(`Getting a quote from ${character}...`);
         const quote = yield getFuturamaQuote(character);
         console.log(quote);
+        core.setOutput('quote', quote);
     });
 }
 function getCharacterInput() {

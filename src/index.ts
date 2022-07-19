@@ -13,6 +13,8 @@ async function run() {
   const quote = await getFuturamaQuote(character);
 
   console.log(quote);
+
+  core.setOutput('quote', quote);
 }
 
 function getCharacterInput() {
