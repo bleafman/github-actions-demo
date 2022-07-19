@@ -1,10 +1,11 @@
 import axios from 'axios'
 import core from '@actions/core'
 
+const DEFAULT_CHARACTER = 'dr-zoidberg';
+
 run();
 
 async function run() {
-
   const character = getCharacterInput();
 
   console.log(`Getting a quote from ${character}...`);
@@ -15,7 +16,7 @@ async function run() {
 }
 
 function getCharacterInput() {
-  const character = core.getInput('character');
+  const character = core?.getInput('character') || DEFAULT_CHARACTER;
 
   return character;
 }

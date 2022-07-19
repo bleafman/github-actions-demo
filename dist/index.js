@@ -6973,6 +6973,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const axios_1 = __importDefault(__nccwpck_require__(6545));
 const core_1 = __importDefault(__nccwpck_require__(2186));
+const DEFAULT_CHARACTER = 'dr-zoidberg';
 run();
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -6983,7 +6984,7 @@ function run() {
     });
 }
 function getCharacterInput() {
-    const character = core_1.default.getInput('character');
+    const character = (core_1.default === null || core_1.default === void 0 ? void 0 : core_1.default.getInput('character')) || DEFAULT_CHARACTER;
     return character;
 }
 function getFuturamaQuote() {
