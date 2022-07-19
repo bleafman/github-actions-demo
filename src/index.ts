@@ -1,11 +1,23 @@
 import axios from 'axios'
+import core from '@actions/core'
 
 run();
 
 async function run() {
+
+  const character = getCharacterInput();
+
+  console.log(`Getting a quote from ${character}...`);
+
   const quote = await getFuturamaQuote();
 
   console.log(quote);
+}
+
+function getCharacterInput() {
+  const character = core.getInput('character');
+
+  return character;
 }
 
 async function getFuturamaQuote() {

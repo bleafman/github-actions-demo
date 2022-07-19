@@ -1,6 +1,11 @@
-name: "Hello World"
-description: "Saying hello to the world 👋🏻"
+name: "Hello Futurama"
+description: "Saying hello to the world from your favorite Futurama character"
 author: "Brandon Leafman"
+
+inputs:
+  character:
+    description: "The Futurama character you would like a quote from"
+    default: "dr-zoidberg"
 
 runs:
   using: 'node16'

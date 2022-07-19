@@ -20,6 +20,7 @@
   "homepage": "https://github.com/bleafman/github-actions-demo#readme",
   "dependencies": {},
   "devDependencies": {
+    "@actions/core": "^1.9.0",
     "@types/node": "^18.0.6",
     "@vercel/ncc": "^0.34.0",
     "axios": "^0.27.2",
