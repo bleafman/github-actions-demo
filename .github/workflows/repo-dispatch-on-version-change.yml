@@ -1,6 +1,8 @@
 name: "Repo Dispatch on Version Change"
 
-on: [push]
+on:
+  push:
+    branches: [main]
 
 jobs:
   dispatch-on-version-change:
@@ -22,7 +24,19 @@ jobs:
 
       - name: Log when unchanged
         if: steps.check.outputs.changed == 'false'
-        run: 'echo "No version change :/"'
+        run: 'echo "No version change found."'
+
+      - name: Send a repository dispatch on version change
+        if: steps.check.outputs.changed == 'true'
+        run: 'echo "Sending dispatch..."'
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          event-type: dependency-updated
+          repository: bleafman/github-actions-playground
+          client-payload: '{ "dependency":  "version": "${{ steps.check.outputs.version }}", "type": "${{ steps.check.outputs.type }}"}'
+
+
 
 
 
