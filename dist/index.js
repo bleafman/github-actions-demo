@@ -6997,19 +6997,28 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const axios_1 = __importDefault(__nccwpck_require__(6545));
 const core = __importStar(__nccwpck_require__(2186));
 const DEFAULT_CHARACTER = 'dr-zoidberg';
+const VALID_CHARACTERS = ['dr-zoidberg', 'fry', 'leela', 'bender'];
 run();
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         const character = getCharacterInput();
-        console.log(`Getting a quote from ${character}...`);
+        core.debug(`[Futurama] Input Character: ${character}`);
+        if (!isCharacterValid(character)) {
+            core.setFailed(`Unknown character: ${character}.`);
+            return;
+        }
+        core.debug(`[Futurama] Getting a quote from ${character}...`);
         const quote = yield getFuturamaQuote(character);
-        console.log(quote);
+        core.debug(`[Futurama] Successfully retrieved quote: ${quote}`);
         core.setOutput('quote', quote);
     });
 }
 function getCharacterInput() {
     const character = (core === null || core === void 0 ? void 0 : core.getInput('character')) || DEFAULT_CHARACTER;
     return character;
+}
+function isCharacterValid(character) {
+    return VALID_CHARACTERS.includes(character);
 }
 function getFuturamaQuote(character) {
     return __awaiter(this, void 0, void 0, function* () {

@@ -10,16 +10,18 @@ run();
 async function run() {
   const character = getCharacterInput();
 
+  core.debug(`[Futurama] Input Character: ${character}`);
+
   if(!isCharacterValid(character)) {
     core.setFailed(`Unknown character: ${character}.`);
     return;
   }
 
-  console.log(`Getting a quote from ${character}...`);
+  core.debug(`[Futurama] Getting a quote from ${character}...`);
 
   const quote = await getFuturamaQuote(character);
 
-  console.log(quote);
+  core.debug(`[Futurama] Successfully retrieved quote: ${quote}`);
 
   core.setOutput('quote', quote);
 }
