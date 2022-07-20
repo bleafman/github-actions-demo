@@ -28,7 +28,6 @@ jobs:
 
       - name: Send a repository dispatch on version change
         if: steps.check.outputs.changed == 'true'
-        run: 'echo "Sending dispatch..."'
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
