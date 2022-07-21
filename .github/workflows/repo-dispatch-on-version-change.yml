@@ -30,7 +30,7 @@ jobs:
         if: steps.check.outputs.changed == 'true'
         uses: peter-evans/repository-dispatch@v2
         with:
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          token: ${{ secrets.REPO_ACCESS_PAT }}
           event-type: dependency-updated
           repository: bleafman/github-actions-playground
           client-payload: '{ "dependency":  "version": "${{ steps.check.outputs.version }}", "type": "${{ steps.check.outputs.type }}"}'
