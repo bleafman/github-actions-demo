@@ -33,7 +33,7 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_PAT }}
           event-type: dependency-updated
           repository: bleafman/github-actions-playground
-          client-payload: '{ "dependency":  "version": "${{ steps.check.outputs.version }}", "type": "${{ steps.check.outputs.type }}"}'
+          client-payload: '{ "dependency": "demo-action",  "version": "${{ steps.check.outputs.version }}", "type": "${{ steps.check.outputs.type }}"}'
 
 
 
