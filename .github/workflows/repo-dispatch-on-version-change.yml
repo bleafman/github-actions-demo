@@ -9,6 +9,10 @@ jobs:
     name: Send a repository dispatch when the version changes
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - uses: ./send-dispatch-on-version-change
         with:
           package-name: "action-demo"

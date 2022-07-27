@@ -1,6 +1,8 @@
 name: "Repo Dispatch on Version Change"
 description: "Sends a repository_dispatch to another repository when the version of the current package changes. This is helpful for immediately updating dependencies downstream."
 
+# Requires actions/checkout@v3 and actions/setup-node@v3 to be run first.
+
 inputs:
   package-name:
     description: "The name the published name of this package."
@@ -15,11 +17,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 16
-
     - name: Check if version has been updated
       id: check-version
       uses: EndBug/version-check@v2
