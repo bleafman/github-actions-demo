@@ -1,0 +1,41 @@
+name: "Repo Dispatch on Version Change"
+description: "Sends a repository_dispatch to another repository when the version of the current package changes. This is helpful for immediately updating dependencies downstream."
+
+inputs:
+  package-name:
+    description: "The name the published name of this package."
+    required: true
+  target-repository:
+    description: "The name of the package that will receive the dispatch."
+    required: true
+  github-access-token:
+    description: "A GitHub access token with 'repo' permissions for the target-repository."
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
+    - name: Check if version has been updated
+      id: check-version
+      uses: EndBug/version-check@v2
+
+    - name: Skip if no version change
+      if: steps.check-version.outputs.changed == 'false'
+      shell: bash
+      run: |
+        echo "No version change found."
+        exit 0
+
+    - name: Send a repository dispatch on version change
+      if: steps.check-version.outputs.changed == 'true'
+      uses: peter-evans/repository-dispatch@v2
+      with:
+        token: ${{ inputs.github-access-token }}
+        event-type: dependency-updated
+        repository: ${{ inputs.target-repository }}
+        client-payload: '{ "dependency": "${{ inputs.package-name }}",  "version": "${{ steps.check-version.outputs.version }}", "type": "${{ steps.check-version.outputs.type }}"}'

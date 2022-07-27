@@ -9,32 +9,11 @@ jobs:
     name: Send a repository dispatch when the version changes
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: ./send-dispatch-on-version-change
         with:
-          node-version: 16
-
-      - name: Check if version has been updated
-        id: check
-        uses: EndBug/version-check@v2
-
-      - name: Log when changed
-        if: steps.check.outputs.changed == 'true'
-        run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
-
-      - name: Log when unchanged
-        if: steps.check.outputs.changed == 'false'
-        run: 'echo "No version change found."'
-
-      - name: Send a repository dispatch on version change
-        if: steps.check.outputs.changed == 'true'
-        uses: peter-evans/repository-dispatch@v2
-        with:
-          token: ${{ secrets.REPO_ACCESS_PAT }}
-          event-type: dependency-updated
-          repository: bleafman/github-actions-playground
-          client-payload: '{ "dependency": "demo-action",  "version": "${{ steps.check.outputs.version }}", "type": "${{ steps.check.outputs.type }}"}'
-
+          package-name: "action-demo"
+          target-repository: "bleafman/github-actions-playground"
+          github-access-token: ${{ secrets.REPO_ACCESS_PAT }}
 
 
 
