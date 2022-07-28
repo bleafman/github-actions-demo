@@ -19,7 +19,7 @@ runs:
   steps:
     - name: Check if version has been updated
       id: check-version
-      uses: EndBug/version-check@v2
+      uses: EndBug/version-check@680a6c91053a233d01a8c5fc6b4f0d3bb28845ab
 
     - name: Skip if no version change
       if: steps.check-version.outputs.changed == 'false'
