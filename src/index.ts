@@ -5,7 +5,7 @@ const DEFAULT_CHARACTER = 'dr-zoidberg';
 
 const VALID_CHARACTERS = ['dr-zoidberg', 'fry', 'leela', 'bender'];
 
-run();
+run()
 
 async function run() {
   const character = getCharacterInput();
