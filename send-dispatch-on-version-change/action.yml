@@ -13,6 +13,9 @@ inputs:
   github-access-token:
     description: "A GitHub access token with 'repo' permissions for the target-repository."
     required: true
+  file-path:
+    description: "The path to the package.json containing the version number. Defaults to root directory if not specified."
+    required: false
 
 runs:
   using: "composite"
@@ -20,6 +23,8 @@ runs:
     - name: Check if version has been updated
       id: check-version
       uses: EndBug/version-check@680a6c91053a233d01a8c5fc6b4f0d3bb28845ab
+      with:
+        file-name: ${{ inputs.file-path || 'package.json' }}
 
     - name: Skip if no version change
       if: steps.check-version.outputs.changed == 'false'
